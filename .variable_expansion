@@ -1,0 +1,36 @@
+COURS Docsify Gabarit Cours
+S1 2025/08/25
+S2 2025/09/01
+S3 2025/09/08
+S4 2025/09/15
+S5 2025/09/22
+S6 2025/09/29
+S7 2025/10/06
+S8 2025/10/20
+S9 2025/10/27
+S10 2025/11/03
+S11 2025/11/10
+S12 2025/11/17
+S13 2025/11/24
+S14 2025/12/01
+S15 2025/12/08
+BLOC1 NOM DU BLOC 1
+BLOC2 NOM DU BLOC 2
+BLOC3 NOM DU BLOC 3
+BLOC4 NOM DU BLOC 4
+SEANCE_EVF_1 [Séance 3](../../01-deroulement/03/)
+SEANCE_EVF_2 [Séance 7](../../01-deroulement/07/)
+SEANCE_EVF_3 [Séance 10](../../01-deroulement/10/)
+SEANCE_EVF_4 [Séance 14](../../01-deroulement/04/)
+SEANCE_EVS_1 [Séance 4](../../01-deroulement/04/)
+SEANCE_EVS_2 [Séance 8](../../01-deroulement/08/)
+SEANCE_EVS_3 [Séance 11](../../01-deroulement/11/)
+SEANCE_EVS_4 [Séance 15](../../01-deroulement/15/)
+PONDERATION_EVS_1 15%
+PONDERATION_EVS_2 20%
+PONDERATION_EVS_3 25%
+PONDERATION_EVS_4 40%
+DESCRIPTION_EVS_1 Ceci est la description de l'activité évaluée #1
+DESCRIPTION_EVS_2 Ceci est la description de l'activité évaluée #2
+DESCRIPTION_EVS_3 Ceci est la description de l'activité évaluée #3
+DESCRIPTION_EVS_4 Ceci est la description de l'activité évaluée #4

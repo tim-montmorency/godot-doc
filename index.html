@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no, viewport-fit=cover">
+    <meta name="description" content="TIM-Montmorency gabarit pour Docsify">
+    <title>582301 interactivité ludique</title>
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:title" content="TIM-Montmorency gabarit pour Docsify">
+    <meta property="og:description" content="TIM-Montmorency gabarit pour Docsify">
+    <meta property="og:image" content="https://tim-montmorency.com/docsify-gabarit-cours/favicon/opengraph.drawio.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@^5.0.0-rc/dist/themes/core.min.css">
+
+    <!-- Core Dark - Dark Mode Only (add-on), to disable remove or comment out the below line -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify@^5.0.0-rc/dist/themes/addons/core-dark.min.css"
+        media="(prefers-color-scheme: dark)" />
+
+    <link rel="stylesheet" href="https://gllmar.github.io/docsify-lightbox-v5/docsify-lightbox.css">
+    <!-- Prism theme (light). Swap with prism-okaidia.min.css or other for dark preference. -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.min.css" /> -->
+    <!-- Prism line numbers plugin CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.css" />
+
+    <style>
+        :root {
+            --theme-color: #ff5555; /*red */
+        }
+    </style>
+
+</head>
+
+<body>
+    <!--
+        This index.html is a template (gabarit) for creating a Docsify-based course site.
+        Edit the <title>, meta tags and the `window.$docsify` configuration below to match your
+        course repository. Replace the `repo` value with your repo URL so the Docsify toolbar
+        links back to your GitHub project.
+    -->
+
+    <div id="app"></div>
+
+    <script>
+
+
+
+    window.$docsify = {
+            name: 'TIM-Montmorency gabarit',
+            // Replace with your repository URL, e.g. 'https://github.com/username/repo'
+            repo: 'https://github.com/tim-montmorency/docsify-gabarit-cours',
+  
+            // Sidebar Configuration
+            auto2top: true,
+            loadSidebar: true,
+            maxLevel: 3,
+            // Set subMaxLevel to show nested navigation
+            subMaxLevel: 3,
+
+            search: {
+                placeholder: '    🔍',
+                noData: '     🤷‍♂️',
+                // Headline depth, 1 - 6
+                depth: 3,
+                hideOtherSidebarContent: false,
+            },
+            
+            // Navigation
+            relativePath: true,
+            
+            // Better navigation for tutorials
+            alias: {
+                '/.*/_sidebar.md': '/_sidebar.md',
+                '/.*/_navbar.md': '/_navbar.md',
+            },
+
+            // Copy Code Plugin Configuration    
+            copyCode: {
+                buttonText: '📝',
+                errorText: '⚠️',
+                successText: '✅ ',
+            },
+            
+            // Pagination for tutorial flow
+            pagination: {
+                previousText: '',
+                nextText: '',
+                crossChapter: true,
+                crossChapterText: true,
+            },
+            
+            // File extensions that should open in new tab
+            unhashtagLinkExtensions: ['.pdf', '.html', '.docx', '.gdscript'],
+
+            // Add line numbers automatically via plugin hook
+            plugins: [function (hook) {
+                hook.doneEach(function () {
+                    const pres = document.querySelectorAll('pre[data-lang]');
+                    pres.forEach(pre => {
+                        if (!pre.classList.contains('line-numbers')) pre.classList.add('line-numbers');
+                    });
+                    if (window.Prism && window.Prism.highlightAll) {
+                        window.Prism.highlightAll();
+                    }
+                });
+            }],
+        };
+    </script>
+
+    <!-- Docsify core (load BEFORE extra Prism grammars; per docs grammars must come after docsify) -->
+    <script src="https://cdn.jsdelivr.net/npm/docsify@^5.0.0-rc/dist/docsify.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/docsify@^5.0.0-rc/dist/plugins/search.min.js"></script>
+
+    <!-- Mermaid (single import) -->
+    <script type="module">
+        import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+        mermaid.initialize({ startOnLoad: true, theme: "neutral" });
+        window.mermaid = mermaid;
+    </script>
+
+        <!-- Lightbox plugin script -->
+    <script src="https://gllmar.github.io/docsify-lightbox-v5/docsify-lightbox.js"></script>
+    
+    <script src="https://gllmar.github.io/docsify-img-grid/docsify-img-grid.js"></script>
+    <script src="https://gllmar.github.io/docsify-img-caption/docsify-img-caption.js"></script>
+
+    <script src="https://gllmar.github.io/docsify-alert/docsify-alerts.js"></script>
+
+    <script src="//unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+    <script src="https://gllmar.github.io/docsify-videoplayer/docsify-videoplayer.js"></script>
+    <script src="https://gllmar.github.io/docsify-repo-toolbar/docsify-repo-toolbar.js"></script>
+    <script src="https://gllmar.github.io/docsify-unhashtaglink/docsify-unhashtaglink.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+    <script src="//unpkg.com/docsify-mermaid@2.0.1/dist/docsify-mermaid.js"></script>
+        <script src="https://gllmar.github.io/docsify-v5-sidebar-collapse/docsify-v5-sidebar-collapse.js"></script>
+        <!-- Extra Prism languages AFTER Docsify (don't re-load core to avoid overrides) -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-c.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-cpp.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-python.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-gdscript.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-csharp.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-diff.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-markdown.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-powershell.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-batch.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-typescript.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-yaml.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-docker.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-sql.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-go.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-rust.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-toml.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-glsl.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-hlsl.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-wgsl.min.js"></script>
+        <!-- Line numbers plugin last -->
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+
+    <!-- Prism languages loaded individually above; to add more just insert another prism-<lang>.min.js script before docsify.min.js -->
+</body>
+
+</html>

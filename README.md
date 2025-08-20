@@ -1,0 +1,113 @@
+# <!-- varexp:begin COURS  -->Docsify Gabarit Cours<!-- varexp:end -->
+
+Docsify modele de publication via actions
+
+## Activer le déploiement de page
+
+via Github Actions
+
+![page-action](https://i.ibb.co/2gkwH9L/page-action.png)
+
+
+## submodule
+
+```sh
+git submodule sync --recursive && git submodule update --init --remote --recursive
+```
+
+## Personalisation
+
+### index.html
+
+#### meta
+
+Est utilisée pour inclure des métadonnées, comme des descriptions ou des informations relatives au contenu de la page, sans les afficher directement aux utilisateurs.
+
+```html
+
+<meta name="description" content="Modèle docsify pour publication avec actions">
+
+```
+
+#### title
+Définit le titre de la page qui s'affiche dans l'onglet du navigateur et est utilisé par les moteurs de recherche comme le titre principal dans les résultats de recherche.
+
+```html
+<title>Modèle docsify pour publication classique</title>
+```
+
+
+
+
+#### window.$docsify 
+
+##### name
+
+Titre de la page affiché dans la barre de coté
+
+```html
+name: 'Modèle Docsify Classique',
+```
+
+##### repo
+
+Lien vers le repository git du projet à documenter, cliquable depuis l'icone dans la barre de coté
+
+```html
+repo: 'https://github.com/gllmAR/docsify-modele-classique',
+```
+
+
+#### CSS (optionnelle)
+
+Source et lien vers style CSS lié  [gllmAR/docsify-simple-style](https://github.com/gllmAR/docsify-simple-style/)
+
+
+
+#### Section substitution de navigation 
+
+```
+les élément start-replace-subnav et end-replace-subnav  lorsqu'ils sont dans des commentaire HTML sont substitués dans par un des scripts via intégration continue 
+```
+
+<!-- start-replace-subnav -->
+* [Déroulement](/01-deroulement/)
+    * [S1 : <!-- varexp:begin S1 -->2025/08/25<!-- varexp:end -->](/01-deroulement/01/)
+    * [S2 :<!-- varexp:begin S2 -->2025/09/01<!-- varexp:end -->](/01-deroulement/02/)
+    * [S3 : <!-- varexp:begin S3 -->2025/09/08<!-- varexp:end -->](/01-deroulement/03/)
+    * [S4 : <!-- varexp:begin S4 -->2025/09/15<!-- varexp:end -->](/01-deroulement/04/)
+    * [S5 :<!-- varexp:begin S5 -->2025/09/22<!-- varexp:end -->](/01-deroulement/05/)
+    * [S6 :<!-- varexp:begin S6 -->2025/09/29<!-- varexp:end -->](/01-deroulement/06/)
+    * [S7 : <!-- varexp:begin S7 -->2025/10/06<!-- varexp:end -->](/01-deroulement/07/)
+    * [S8 : <!-- varexp:begin S8 -->2025/10/20<!-- varexp:end -->](/01-deroulement/08/)
+    * [S9 : <!-- varexp:begin S9 -->2025/10/27<!-- varexp:end -->](/01-deroulement/09/)
+    * [S10 : <!-- varexp:begin S10 -->2025/11/03<!-- varexp:end -->](/01-deroulement/10/)
+    * [S11 : <!-- varexp:begin S11 -->2025/11/10<!-- varexp:end -->](/01-deroulement/11/)
+    * [S12 : <!-- varexp:begin S12 -->2025/11/17<!-- varexp:end -->](/01-deroulement/12/)
+    * [S13 : <!-- varexp:begin S13 -->2025/11/24<!-- varexp:end -->](/01-deroulement/13/)
+    * [S14 :<!-- varexp:begin S14 -->2025/12/01<!-- varexp:end -->](/01-deroulement/14/)
+    * [S15 :<!-- varexp:begin S15 -->2025/12/08<!-- varexp:end -->](/01-deroulement/15/)
+* [Activités ](/02-activites/)
+    * [TP1 <!-- varexp:begin BLOC1 -->NOM DU BLOC 1<!-- varexp:end -->](/02-activites/01/)
+    * [TP2 <!-- varexp:begin BLOC2 -->NOM DU BLOC 2<!-- varexp:end -->](/02-activites/02/)
+    * [TP3 <!-- varexp:begin BLOC3 -->NOM DU BLOC 3<!-- varexp:end -->](/02-activites/03/)
+    * [Projet intégrateur <!-- varexp:begin BLOC4 -->NOM DU BLOC 4<!-- varexp:end -->](/02-activites/04/)
+* [Savoirs](/03-savoirs/)
+    * [Savoirs 1 : <!-- varexp:begin BLOC1 -->NOM DU BLOC 1<!-- varexp:end -->](/03-savoirs/01/)
+    * [Savoirs 2 : <!-- varexp:begin BLOC2 -->NOM DU BLOC 2<!-- varexp:end -->](/03-savoirs/02/)
+    * [Savoirs 3 : <!-- varexp:begin BLOC3 -->NOM DU BLOC 3<!-- varexp:end -->](/03-savoirs/03/)
+    * [Savoirs 4: <!-- varexp:begin BLOC4 -->NOM DU BLOC 4<!-- varexp:end -->](/03-savoirs/04/)
+* [Évaluations](/04-evaluations/)
+    * [Évaluations formatives](/04-evaluations/formatives/)
+        * [EVF TP 1 : <!-- varexp:begin BLOC1 -->NOM DU BLOC 1<!-- varexp:end -->](/04-evaluations/formatives/01/)
+        * [EVF TP 2 : <!-- varexp:begin BLOC2 -->NOM DU BLOC 2<!-- varexp:end -->](/04-evaluations/formatives/02/)
+        * [EVF TP 3 - <!-- varexp:begin BLOC3 -->NOM DU BLOC 3<!-- varexp:end -->](/04-evaluations/formatives/03/)
+        * [EVF 4 - <!-- varexp:begin BLOC4 -->NOM DU BLOC 4<!-- varexp:end -->](/04-evaluations/formatives/04/)
+    * [Évaluations sommatives](/04-evaluations/sommatives/)
+        * [EVS TP1 : <!-- varexp:begin BLOC1 -->NOM DU BLOC 1<!-- varexp:end -->](/04-evaluations/sommatives/01/)
+        * [EVS TP2 : <!-- varexp:begin BLOC2 -->NOM DU BLOC 2<!-- varexp:end -->](/04-evaluations/sommatives/02/)
+        * [EVS TP3 :<!-- varexp:begin BLOC3 -->NOM DU BLOC 3<!-- varexp:end -->](/04-evaluations/sommatives/03/)
+        * [EVS 4 projet : <!-- varexp:begin BLOC4 -->NOM DU BLOC 4<!-- varexp:end -->](/04-evaluations/sommatives/04/)
+* [Médiagraphie](/05-mediagraphie/)
+* [PIEA](/06-piea/)
+<!-- end-replace-subnav -->

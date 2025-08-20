@@ -1,0 +1,4 @@
+[submodule "docsh"]
+	path = docsh
+	url = https://github.com/tim-montmorency/docsh.git
+	branch = main
