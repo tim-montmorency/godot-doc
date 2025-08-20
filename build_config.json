@@ -7,7 +7,7 @@
   "enable_web_exports": true,
   "enable_documentation_generation": true,
   "enable_embed_injection": true,
-  "enable_sidebar_generation": true,
+  "enable_sidebar_generation": false,
   "enable_caching": true,
   "verbose_output": false,
   "dry_run_mode": false,
