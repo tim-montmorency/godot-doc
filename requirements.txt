@@ -1,0 +1,3 @@
+# Python dependencies for Godot Examples Documentation Build System
+psutil>=5.0.0
+pyyaml>=6.0.0
