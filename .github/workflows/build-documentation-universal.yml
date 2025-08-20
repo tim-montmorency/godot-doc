@@ -36,6 +36,14 @@ jobs:
           submodules: true
           lfs: true
 
+      - name: Run docsh autorun scripts
+        # Run autorun from the docsh submodule so any repository-specific
+        # prep scripts are executed early (docsh is checked out via submodules).
+        run: |
+          echo "Running docsh autorun scripts..."
+          bash ./docsh/autorun.sh
+        shell: bash
+
       - name: Read Godot version from build_config.json
         id: read_config
         run: |
