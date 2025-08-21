@@ -1,0 +1,12 @@
+{
+  "name": "godot-doc-local-https",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "generate-cert": "bash scripts/generate-self-signed.sh",
+    "start-https": "node scripts/serve-https.js"
+  },
+  "engines": {
+    "node": ">=14"
+  }
+}

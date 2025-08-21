@@ -1,0 +1,26 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Generate Self-Signed Cert",
+      "type": "shell",
+      "command": "bash",
+      "args": ["${workspaceFolder}/scripts/generate-self-signed.sh"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Start HTTPS Server",
+      "type": "shell",
+      "command": "node",
+      "args": ["${workspaceFolder}/scripts/serve-https.js"],
+      "isBackground": false,
+      "problemMatcher": []
+    }
+  ],
+  "compounds": [
+    {
+      "label": "Serve over HTTPS (generate cert then start)",
+      "tasks": ["Generate Self-Signed Cert", "Start HTTPS Server"]
+    }
+  ]
+}
