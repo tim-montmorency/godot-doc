@@ -1,6 +1,11 @@
 // Docsify plugin for initializing demo iframes
 (function() {
   'use strict';
+  // Toggle whether demo URLs should use the ?scene= query argument when
+  // constructing embed URLs. Some hosting setups are sensitive to query
+  // arguments and you may prefer to always point at the export folder root.
+  // Set to false to disable using '?scene=' in generated demo URLs.
+  var ALLOW_URL_SCENE_ARG = true;
   
   // Toggle fullscreen for iframe with mobile support
   function toggleFullscreen(iframe) {
@@ -295,7 +300,14 @@
       return null;
     }
     
-    // Remove .md extension if present
+    // Remove query string and any fragment parts that may follow (e.g. ?id=...)
+    // then remove .md extension if present
+    currentHash = currentHash.split('?')[0].split('#')[0];
+    try {
+      currentHash = decodeURIComponent(currentHash);
+    } catch (e) {
+      // ignore decode errors and continue with raw value
+    }
     currentHash = currentHash.replace(/\.md$/, '');
     
     // Remove leading slash if present
@@ -324,19 +336,18 @@
     }
     
     // Strategy 2: Look for general project structures like:
-    // godot-demo-projects/2d/bullet_shower
-    // godot-examples/category/project_name
-    // any-repo/category/project_name
-    var generalPathMatch = currentHash.match(/([^\/]+)\/([^\/]+)\/([^\/]+)(?:\/(?:README|index)?)?$/);
-    
+    // godot-demo-projects/2d/bullet_shower or .../2d/particles
+    // Make the regex tolerant to optional trailing slashes and missing README segments
+    var generalPathMatch = currentHash.match(/([^\/]+)\/([^\/]+)\/([^\/?#]+)(?:[\/]?(?:README|index)?)?$/);
+
     if (generalPathMatch) {
       var repo = generalPathMatch[1];
       var category = generalPathMatch[2];
       var projectName = generalPathMatch[3];
-      
+
       // For general structures, we'll use category/project_name as the scene path
       var scenePath = category + '/' + projectName;
-      console.log('✅ Extracted general format scene path:', scenePath);
+      console.debug('✅ Extracted general format scene path:', scenePath);
       return scenePath;
     }
     
@@ -349,8 +360,23 @@
       return scenePath;
     }
     
-    console.warn('Could not extract scene path from hash:', currentHash);
+  console.debug('Could not extract scene path from hash:', currentHash);
     return null;
+  }
+
+  // Normalize a hash or path to a base project path (no leading/trailing slashes,
+  // no query/fragments, and strip any trailing exports/web segment).
+  function normalizePathForExports(raw) {
+    if (!raw) return '';
+    var p = raw.split('?')[0].split('#')[0];
+    try { p = decodeURIComponent(p); } catch (e) { /* ignore */ }
+    // Remove leading/trailing slashes
+    p = p.replace(/^\/+|\/+$/g, '');
+    // Remove trailing README or index
+    p = p.replace(/\/(?:README|index)$/, '');
+    // Strip any trailing exports/web to avoid double-appending
+    p = p.replace(/\/?exports\/web\/?$/i, '');
+    return p;
   }
 
   function initializeDemoEmbeds() {
@@ -416,15 +442,17 @@
       
       // Strategy 1: gdEmbed structure - check if path contains gdEmbed or scenes
       if (currentHash.includes('gdEmbed') || currentHash.includes('/scenes/')) {
-        demoPath = `godot-demo-extended/gdEmbed/exports/web/?scene=${encodeURIComponent(scenePath)}`;
+  // Use normalized base path and append exports/web
+  var base = normalizePathForExports(`godot-demo-extended/gdEmbed`);
+  demoPath = base + '/exports/web/' + (ALLOW_URL_SCENE_ARG ? ('?scene=' + encodeURIComponent(scenePath)) : '');
         console.log('📍 Using gdEmbed strategy');
       } 
       // Strategy 2: Individual project structure (like godot-demo-projects)
       else {
-        // For individual projects, construct path to the current project's exports
-        // Remove leading slash and trailing slash/README
-        var cleanHash = currentHash.replace(/^\//, '').replace(/\/(README)?$/, '');
-        demoPath = `${cleanHash}/exports/web/`;
+  // For individual projects, construct path to the current project's exports
+  // Normalize the current hash (strip query/fragments and trailing exports/web)
+  var cleanHash = normalizePathForExports(currentHash);
+  demoPath = (cleanHash ? (cleanHash + '/exports/web/') : 'exports/web/');
         console.log('📍 Using individual project strategy');
       }
       
@@ -454,8 +482,9 @@
       var sceneName = pathParts[pathParts.length - 1];
       
       // For project path format, construct direct path to exports
-      var demoPath = `${projectPath}/exports/web/`;
-      var fullDemoUrl = baseUrl + demoPath;
+  var base = normalizePathForExports(projectPath);
+  var demoPath = base + '/exports/web/';
+  var fullDemoUrl = baseUrl + demoPath;
       
       console.log('✅ Project path resolved to:', projectPath);
       console.log('🔗 Demo URL:', fullDemoUrl);
@@ -510,7 +539,8 @@
       sceneName = pathParts[3];
       
       var scenePath = `${category}/${sceneFolder}`;
-      demoPath = `${projectName}/exports/web/?scene=${encodeURIComponent(scenePath)}`;
+  var base2 = normalizePathForExports(projectName);
+  demoPath = base2 + '/exports/web/' + (ALLOW_URL_SCENE_ARG ? ('?scene=' + encodeURIComponent(scenePath)) : '');
     }
     
     // Build demo URL
