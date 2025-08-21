@@ -577,7 +577,7 @@
     var headerTitle = `🎮 Interactive Demo: ${sceneName}`;
     var instructions = 'Interactive demo';
 
-    // Create control buttons based on device type
+    // Create control buttons based on device type (we'll place them in an overlay)
     var controlButtons = '';
     if (isMobileDevice()) {
       // Mobile: Show expanded view and pop-out
@@ -594,14 +594,12 @@
       `;
     }
 
+    // Minimal inline styles: iframe-wrapper becomes positioning context, overlay floats top-right
     container.innerHTML = `
       <div class="demo-header">
         <h3>${headerTitle}</h3>
-        <div class="demo-controls">
-          ${controlButtons}
-        </div>
       </div>
-      <div class="iframe-wrapper">
+      <div class="iframe-wrapper" style="position: relative;">
         <iframe 
           id="${iframeId}" 
           src="${fullDemoUrl}"
@@ -611,6 +609,9 @@
           allowfullscreen="true">
           <p>Your browser does not support iframes. <a href="${fullDemoUrl}" target="_blank">Open demo in new tab</a></p>
         </iframe>
+        <div class="demo-overlay-controls" style="position: absolute; top: -30px; right:8px; z-index: 20; display: flex; gap: 6px;">
+          ${controlButtons}
+        </div>
       </div>
       <p class="demo-instructions">${instructions}</p>
     `;
